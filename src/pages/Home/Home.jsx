@@ -1,110 +1,121 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import CssBaseline from '@mui/material/CssBaseline';
-import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import StarIcon from "@mui/icons-material/StarBorder";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import Container from "@mui/material/Container";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Your Website
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-
 const Item = styled(Paper)(({ theme }) => ({
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
 const tiers = [
   {
-    title: 'Free',
-    price: '0',
+    title: "Free",
+    price: "0",
     description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
+      "10 users included",
+      "2 GB of storage",
+      "Help center access",
+      "Email support",
     ],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
+    buttonText: "Sign up for free",
+    buttonVariant: "outlined",
   },
   {
-    title: 'Pro',
-    subheader: 'Most popular',
-    price: '15',
+    title: "Pro",
+    subheader: "Most popular",
+    price: "15",
     description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
+      "20 users included",
+      "10 GB of storage",
+      "Help center access",
+      "Priority email support",
     ],
-    buttonText: 'Get started',
-    buttonVariant: 'contained',
+    buttonText: "Get started",
+    buttonVariant: "contained",
   },
   {
-    title: 'Enterprise',
-    price: '30',
+    title: "Enterprise",
+    price: "30",
     description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
+      "50 users included",
+      "30 GB of storage",
+      "Help center access",
+      "Phone & email support",
     ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
+    buttonText: "Contact us",
+    buttonVariant: "outlined",
   },
 ];
 
 const footers = [
   {
-    title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
+    title: "Company",
+    description: ["Team", "History", "Contact us", "Locations"],
   },
   {
-    title: 'Features',
+    title: "Features",
     description: [
-      'Cool stuff',
-      'Random feature',
-      'Team feature',
-      'Developer stuff',
-      'Another one',
+      "Cool stuff",
+      "Random feature",
+      "Team feature",
+      "Developer stuff",
+      "Another one",
     ],
   },
   {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
+    title: "Resources",
+    description: [
+      "Resource",
+      "Resource name",
+      "Another resource",
+      "Final resource",
+    ],
   },
   {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
+    title: "Legal",
+    description: ["Privacy policy", "Terms of use"],
   },
 ];
 
 function Home() {
   return (
     <React.Fragment>
-      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+      <GlobalStyles
+        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
+      />
       <CssBaseline />
       <AppBar
         position="static"
@@ -112,30 +123,24 @@ function Home() {
         elevation={0}
         sx={{ borderBottom: (theme) => `0px solid ${theme.palette.divider}` }}
       >
-        <Toolbar sx={{ flexWrap: 'wrap' }}>
+        <Toolbar sx={{ flexWrap: "wrap" }}>
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-          DAVEPOT
+            DAVEPOT
           </Typography>
           <nav>
-            {/* <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Features
-            </Link> */}
             <Link
               variant="button"
               color="text.primary"
+              underline="none"
               href="#"
               sx={{ my: 1, mx: 1.5 }}
             >
-            About
+              About
             </Link>
             <Link
               variant="button"
               color="text.primary"
+              underline="none"
               href="#"
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -148,142 +153,65 @@ function Home() {
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
-      <Container disableGutters maxWidth="lg" component="main" sx={{ py: 8, px: 6,backgroundColor:"green" }}>
-        {/* <Typography
-          component="h1"
-          variant="h2"
-          align="center"
-          color="text.primary"
-          gutterBottom
-        >
-          Pricing
-        </Typography>
-        <Typography variant="h5" align="center" color="text.secondary" component="p">
-          Quickly build an effective pricing table for your potential customers with
-          this layout. It&apos;s built with default MUI components with little
-          customization.
-        </Typography> */}
-<Grid container spacing={2} >
-<Grid item xs={8}>
-    <Item>xs=8</Item>
-  </Grid>
-  <Grid item xs={4}>
-    <Item>xs=4</Item>
-  </Grid>
+      <Container maxWidth="lg" component="main" sx={{ py: 8, px: 6 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Item>xs=8</Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>xs=4</Item>
+          </Grid>
+        </Grid>
 
-  
+        <Grid container spacing={2} sx={{ mt: 5 }}>
+          <Grid item xs={6}>
+            <Item>xs=6</Item>
+          </Grid>
+          <Grid item xs={6}>
+            <Item>xs=6</Item>
+          </Grid>
+        </Grid>
 
-</Grid>
+        <Grid container spacing={2} sx={{ mt: 5 }}>
+          <Grid item xs={12}>
+            <Item>xs=6</Item>
+          </Grid>
 
-<Grid container spacing={2} sx = {{mt:5}}>
-<Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
-  <Grid item xs={6}>
-    <Item>xs=6</Item>
-  </Grid>
+          <Grid item xs={2}>
+            <Item>xs=6</Item>
+          </Grid>
 
-
-</Grid>
-
-<Grid container spacing={2} sx = {{mt:5}}>
-<Grid item xs={12}>
-    <Item>xs=6</Item>
-  </Grid>
-
-  <Grid item xs={2}>
-    <Item>xs=6</Item>
-  </Grid>
-
-  <Grid item xs={10}>
-    <Item>xs=6</Item>
-  </Grid>
-
-</Grid>
-
-
-
-
+          <Grid item xs={10}>
+            <Item>xs=6</Item>
+          </Grid>
+        </Grid>
       </Container>
       {/* End hero unit */}
-      <Container maxWidth="lg" component="main" sx = {{mt:5, backgroundColor:"blue"}}>
-        {/* <Grid container spacing={5} alignItems="flex-end">
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid
-              item
-              key={tier.title}
-              xs={12}
-              sm={tier.title === 'Enterprise' ? 12 : 6}
-              md={4}
+      <Container maxWidth="lg" component="main" sx={{ py: 8, px: 6 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Typography
+              variant="h4"
+              align="center"
+              color="text.primary"
+              component="p"
             >
-              <Card>
-                <CardHeader
-                  title={tier.title}
-                  subheader={tier.subheader}
-                  titleTypographyProps={{ align: 'center' }}
-                  action={tier.title === 'Pro' ? <StarIcon /> : null}
-                  subheaderTypographyProps={{
-                    align: 'center',
-                  }}
-                  sx={{
-                    backgroundColor: (theme) =>
-                      theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[700],
-                  }}
-                />
-                <CardContent>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'baseline',
-                      mb: 2,
-                    }}
-                  >
-                    <Typography component="h2" variant="h3" color="text.primary">
-                      ${tier.price}
-                    </Typography>
-                    <Typography variant="h6" color="text.secondary">
-                      /mo
-                    </Typography>
-                  </Box>
-                  <ul>
-                    {tier.description.map((line) => (
-                      <Typography
-                        component="li"
-                        variant="subtitle1"
-                        align="center"
-                        key={line}
-                      >
-                        {line}
-                      </Typography>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant}>
-                    {tier.buttonText}
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
-        </Grid> */}
+              Want to get in touch?
+            </Typography>
+          </Grid>
 
+          <Grid item xs={12} md={6}>
+            <Item>xs=6</Item>
+          </Grid>
 
+          <Grid item xs={12} md={6}>
+            <Item>xs=6</Item>
+          </Grid>
 
-<Grid container  spacing={2} >
-<Grid item xs={12} md={6}>
-    <Item>xs=6</Item>
-  </Grid>
-
-  <Grid item xs={12} md={6}>
-    <Item>xs=6</Item>
-  </Grid>
-
-</Grid>
+          <Grid item xs={12}>
+            <Item>xs=6</Item>
+          </Grid>
+        </Grid>
       </Container>
       {/* Footer */}
       <Container
@@ -295,24 +223,6 @@ function Home() {
           py: [3, 6],
         }}
       >
-        {/* <Grid container spacing={4} justifyContent="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid> */}
         <Copyright sx={{ mt: 5 }} />
       </Container>
       {/* End footer */}
@@ -320,4 +230,4 @@ function Home() {
   );
 }
 
-export default Home
+export default Home;
