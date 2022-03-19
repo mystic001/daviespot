@@ -147,7 +147,7 @@ function Home() {
               variant="button"
               color="text.primary"
               underline="none"
-              href="#"
+              href="google.com"
               sx={{ my: 1, mx: 1.5 }}
             >
               About
