@@ -16,6 +16,9 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import TemporaryDrawer from '../../components/TemporaryDrawer';
 function Copyright(props) {
   return (
     <Typography
@@ -111,6 +114,9 @@ const footers = [
 ];
 
 function Home() {
+
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
   return (
     <React.Fragment>
       <GlobalStyles
@@ -127,7 +133,16 @@ function Home() {
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             DAVEPOT
           </Typography>
-          <nav>
+         
+
+            {!matches ? 
+            <TemporaryDrawer/>
+            
+            :
+        
+<>
+            <nav>
+
             <Link
               variant="button"
               color="text.primary"
@@ -146,10 +161,17 @@ function Home() {
             >
               Contact
             </Link>
-          </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
+            </nav>
+            
+            <Button href="#" variant="contained" sx={{ my: 1, mx: 1.5, backgroundColor: 'black'}} >
             View work
           </Button>
+
+          </>
+            }
+            
+         
+        
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
