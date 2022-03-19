@@ -133,8 +133,7 @@ function Home() {
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             DAVEPOT
           </Typography>
-         
-
+      
             {!matches ? 
             <TemporaryDrawer/>
             
