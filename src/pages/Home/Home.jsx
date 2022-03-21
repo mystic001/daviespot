@@ -200,11 +200,11 @@ function Home() {
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={2}>
+          <Grid item xs={4} md = {2}>
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={10}>
+          <Grid item xs={8} md = {10}>
             <Item>xs=6</Item>
           </Grid>
         </Grid>
@@ -231,7 +231,7 @@ function Home() {
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} >
             <Item>xs=6</Item>
           </Grid>
         </Grid>
