@@ -124,7 +124,7 @@ function Home() {
     message: "",
   });
 
-  const notify = (feedback) => toast(feedback, {
+  const notify = (feedback) => toast.success(feedback, {
     position: "top-right",
     autoClose: 5000,
     hideProgressBar: false,
