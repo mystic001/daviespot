@@ -210,7 +210,7 @@ function Home() {
         </Grid>
       </Container>
       {/* End hero unit */}
-      <Container maxWidth="lg" component="main" sx={{ py: 8, px: 6 }}>
+      <Container maxWidth="lg" component="main" sx={{ px: 6 }}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <Typography
