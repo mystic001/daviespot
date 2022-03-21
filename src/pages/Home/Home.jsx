@@ -18,9 +18,9 @@ import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
-import { useTheme } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
-import TemporaryDrawer from '../../components/TemporaryDrawer';
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import TemporaryDrawer from "../../components/TemporaryDrawer";
 function Copyright(props) {
   return (
     <Typography
@@ -31,7 +31,7 @@ function Copyright(props) {
     >
       {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        DAVEPOT
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -116,9 +116,8 @@ const Item = styled(Paper)(({ theme }) => ({
 // ];
 
 function Home() {
-
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up('sm'));
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
   return (
     <React.Fragment>
       <GlobalStyles
@@ -135,44 +134,41 @@ function Home() {
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
             DAVEPOT
           </Typography>
-      
-            {!matches ? 
-            <TemporaryDrawer/>
-            
-            :
-        
-<>
-            <nav>
 
-            <Link
-              variant="button"
-              color="text.primary"
-              underline="none"
-              href="google.com"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              About
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              underline="none"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Contact
-            </Link>
-            </nav>
-            
-            <Button href="#" variant="contained" sx={{ my: 1, mx: 1.5, backgroundColor: 'black'}} >
-            View work
-          </Button>
+          {!matches ? (
+            <TemporaryDrawer />
+          ) : (
+            <>
+              <nav>
+                <Link
+                  variant="button"
+                  color="text.primary"
+                  underline="none"
+                  href="https://www.google.com/"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  About
+                </Link>
+                <Link
+                  variant="button"
+                  color="text.primary"
+                  underline="none"
+                  href="#"
+                  sx={{ my: 1, mx: 1.5 }}
+                >
+                  Contact
+                </Link>
+              </nav>
 
-          </>
-            }
-            
-         
-        
+              <Button
+                href="#"
+                variant="contained"
+                sx={{ my: 1, mx: 1.5, backgroundColor: "black" }}
+              >
+                View work
+              </Button>
+            </>
+          )}
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
@@ -200,11 +196,11 @@ function Home() {
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={4} md = {2}>
+          <Grid item xs={4} md={2}>
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={8} md = {10}>
+          <Grid item xs={8} md={10}>
             <Item>xs=6</Item>
           </Grid>
         </Grid>
@@ -231,8 +227,23 @@ function Home() {
             <Item>xs=6</Item>
           </Grid>
 
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Item>xs=6</Item>
+          </Grid>
+
+          <Grid item xs={12} sx = {{display:"flex",alignItems: "center",justifyContent: "center"}}>
+            <Button
+              href="#"
+              size = 'large'
+              variant="contained"
+              sx={{
+                my: 1,
+                mx: 1.5,
+                backgroundColor: "black",
+              }}
+            >
+              SUBMIT
+            </Button>
           </Grid>
         </Grid>
       </Container>
