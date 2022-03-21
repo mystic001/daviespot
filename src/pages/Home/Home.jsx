@@ -21,6 +21,7 @@ import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TemporaryDrawer from "../../components/TemporaryDrawer";
+import TextField from '@mui/material/TextField';
 function Copyright(props) {
   return (
     <Typography
@@ -207,7 +208,7 @@ function Home() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="lg" component="main" sx={{ px: 6 }}>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} sx = {{border:"2px solid black",borderRadius:"12px", paddingRight:"12px"}}>
           <Grid item xs={12}>
             <Typography
               variant="h4"
@@ -220,15 +221,21 @@ function Home() {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Item>xs=6</Item>
+          <TextField id="outlined-basic" fullWidth label="Name" placeholder="Enter name" variant="outlined" />
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Item>xs=6</Item>
+          <TextField id="outlined-basic" fullWidth label="Email Address" placeholder="Enter Email Address" variant="outlined" />
           </Grid>
 
           <Grid item xs={12}>
-            <Item>xs=6</Item>
+          <TextField
+          id="outlined-multiline-static"
+          label="Message"
+          fullWidth
+          multiline
+          rows={4}
+          placeholder="Enter your message"/>
           </Grid>
 
           <Grid item xs={12} sx = {{display:"flex",alignItems: "center",justifyContent: "center"}}>
