@@ -13,7 +13,8 @@ import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TemporaryDrawer from "../../components/TemporaryDrawer";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import emailjs from "emailjs-com";
 function Copyright(props) {
   return (
     <Typography
@@ -111,6 +112,20 @@ const Item = styled(Paper)(({ theme }) => ({
 function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        "service_kzzsewh",
+        "template_ppqihxw",
+        e.target,
+        "iMeGneUxWK9PjbNw9"
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => err.message);
+  };
   return (
     <React.Fragment>
       <GlobalStyles
@@ -200,7 +215,15 @@ function Home() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="lg" component="main" sx={{ px: 6 }}>
-        <Grid container spacing={2} sx = {{border:"2px solid black",borderRadius:"12px", paddingRight:"12px"}}>
+        <Grid
+          container
+          spacing={2}
+          sx={{
+            border: `1px solid ${theme.palette.divider}`,
+            borderRadius: "12px",
+            paddingRight: "12px",
+          }}
+        >
           <Grid item xs={12}>
             <Typography
               variant="h4"
@@ -213,27 +236,52 @@ function Home() {
           </Grid>
 
           <Grid item xs={12} md={6}>
-          <TextField id="outlined-basic" fullWidth label="Name" placeholder="Enter name" variant="outlined" />
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              label="Name"
+              placeholder="Enter name"
+              name="name"
+              variant="outlined"
+            />
           </Grid>
 
           <Grid item xs={12} md={6}>
-          <TextField id="outlined-basic" fullWidth label="Email Address" placeholder="Enter Email Address" variant="outlined" />
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              label="Email Address"
+              name="email"
+              placeholder="Enter Email Address"
+              variant="outlined"
+            />
           </Grid>
 
           <Grid item xs={12}>
-          <TextField
-          id="outlined-multiline-static"
-          label="Message"
-          fullWidth
-          multiline
-          rows={4}
-          placeholder="Enter your message"/>
+            <TextField
+              id="outlined-multiline-static"
+              label="Message"
+              name="message"
+              fullWidth
+              multiline
+              rows={4}
+              placeholder="Enter your message"
+            />
           </Grid>
 
-          <Grid item xs={12} sx = {{display:"flex",alignItems: "center",justifyContent: "center"}}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Button
               href="#"
-              size = 'large'
+              onClick={sendEmail}
+              size="large"
               variant="contained"
               sx={{
                 my: 1,
