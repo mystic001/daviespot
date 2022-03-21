@@ -13,6 +13,7 @@ import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TemporaryDrawer from "../../components/TemporaryDrawer";
+import SimpleBackdrop from "../../components/SimpleBackdrop";
 import TextField from "@mui/material/TextField";
 import "./home.css"
 import emailjs from "emailjs-com";
@@ -40,6 +41,8 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+
 // const tiers = [
 //   {
 //     title: "Free",
@@ -113,19 +116,82 @@ const Item = styled(Paper)(({ theme }) => ({
 function Home() {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const [open, setOpen] = React.useState(false);
+  const [emailContent, setEmailContent] = React.useState({
+    name:"",
+    email:"",
+    message:""
+  })
+const validateEmail = (emailAdress) =>{
+  let regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+  if (emailAdress.match(regexEmail)) {
+    return true; 
+  } else {
+    return false; 
+  }
+}
+
+const [error, setError] = React.useState({
+  emailError: false,
+  nameError:false,
+  messageError:false
+})
+  const handleClose = () => {
+    setOpen(false);
+  };
+  // const handleToggle = () => {
+  //   setOpen(!open);
+  // };
+
+  const detailValidationFailed = ()=>{
+    if(emailContent.name === ""){
+      setError({...error,nameError:true})
+      return true
+    }else if(!validateEmail(emailContent.email)){
+      setError({...error,emailError:true})
+      return true
+    }
+    else if(emailContent.message === ""){
+      setError({...error,messageError:true})
+      return true
+    }else {
+      console.log("In d else ran")
+      setError({
+        nameError:false,
+        messageError:false,
+        emailError:false
+      })
+
+      return false
+    }
+    
+  }
+
   const sendEmail = (e) => {
     e.preventDefault();
-    emailjs
-      .sendForm(
-        "service_kzzsewh",
-        "template_ppqihxw",
-        e.target,
-        "iMeGneUxWK9PjbNw9"
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => err.message);
+
+    console.log(emailContent)
+console.log(error)
+    if(!detailValidationFailed()){
+      setOpen(true);
+      emailjs
+        .sendForm(
+          "service_kzzsewh",
+          "template_ppqihxw",
+          e.target,
+          "iMeGneUxWK9PjbNw9"
+        )
+        .then((res) => {
+          console.log(res);
+          setOpen(false);
+        })
+        .catch((err) => {
+          setOpen(false);
+          err.message()
+        });
+    }
+    
+
   };
   return (
     <React.Fragment>
@@ -240,9 +306,14 @@ function Home() {
 
           <Grid item xs={12} md={6}>
             <TextField
+              error = {error.nameError}
+              helperText = "Name is required"
               id="outlined-basic"
               fullWidth
               label="Name"
+              onChange = {(e)=>{
+                setEmailContent({...emailContent,name:e.target.value})
+              }}
               placeholder="Enter name"
               name="name"
               variant="outlined"
@@ -251,10 +322,15 @@ function Home() {
 
           <Grid item xs={12} md={6}>
             <TextField
+            error = {error.emailError}
               id="outlined-basic"
               fullWidth
+              onChange = {(e)=>{
+                setEmailContent({...emailContent,email:e.target.value})
+              }}
               label="Email Address"
               name="email"
+              helperText="Email is required"
               placeholder="Enter Email Address"
               variant="outlined"
             />
@@ -262,9 +338,14 @@ function Home() {
 
           <Grid item xs={12}>
             <TextField
+            error = {error.messageError}
               id="outlined-multiline-static"
               label="Message"
               name="message"
+              onChange = {(e)=>{
+                setEmailContent({...emailContent,message:e.target.value})
+              }}
+              helperText = "Message cannot be empty"
               fullWidth
               multiline
               rows={4}
@@ -282,7 +363,7 @@ function Home() {
             }}
           >
             <input
-            class = "btn"
+            className = "btn"
             type = "submit">
             </input>
             {/* <Button
@@ -298,6 +379,8 @@ function Home() {
             >
               SUBMIT
             </Button> */}
+
+            <SimpleBackdrop open ={open} handleClose={handleClose}/>
           </Grid>
         </Grid>
 
