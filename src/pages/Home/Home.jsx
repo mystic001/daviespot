@@ -14,6 +14,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TemporaryDrawer from "../../components/TemporaryDrawer";
 import TextField from "@mui/material/TextField";
+import "./home.css"
 import emailjs from "emailjs-com";
 function Copyright(props) {
   return (
@@ -215,7 +216,8 @@ function Home() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="lg" component="main" sx={{ px: 6 }}>
-        
+        <form
+        onSubmit={sendEmail}>
         <Grid
           container
           spacing={2}
@@ -279,9 +281,13 @@ function Home() {
               justifyContent: "center",
             }}
           >
-            <Button
+            <input
+            class = "btn"
+            type = "submit">
+            </input>
+            {/* <Button
               href="#"
-              onClick={sendEmail}
+              type = "submit"
               size="large"
               variant="contained"
               sx={{
@@ -291,9 +297,12 @@ function Home() {
               }}
             >
               SUBMIT
-            </Button>
+            </Button> */}
           </Grid>
         </Grid>
+
+        </form>
+       
       </Container>
       {/* Footer */}
       <Container
