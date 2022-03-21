@@ -103,7 +103,7 @@ const footers = [
 
 function Home() {
   return (
-    <React.Fragment>
+    <React.Fragment sx ={{backgroundColor:"#eeeee4"}}>
       <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
       <CssBaseline />
       <AppBar
@@ -148,7 +148,7 @@ function Home() {
         </Toolbar>
       </AppBar>
       {/* Hero unit */}
-      <Container disableGutters maxWidth="lg" component="main" sx={{ py: 8, px: 6,backgroundColor:"green" }}>
+      <Container disableGutters maxWidth="lg" component="main" sx={{ py: 8, px: 6,backgroundColor:"#eeeee4" }}>
         {/* <Typography
           component="h1"
           variant="h2"
@@ -164,10 +164,10 @@ function Home() {
           customization.
         </Typography> */}
 <Grid container spacing={2} >
-<Grid item xs={8}>
+<Grid item xs={12} md={6}>
     <Item>xs=8</Item>
   </Grid>
-  <Grid item xs={4}>
+  <Grid item xs={12} md={6}>
     <Item>xs=4</Item>
   </Grid>
 
@@ -176,10 +176,10 @@ function Home() {
 </Grid>
 
 <Grid container spacing={2} sx = {{mt:5}}>
-<Grid item xs={6}>
+<Grid item xs={12} md={6}>
     <Item>xs=6</Item>
   </Grid>
-  <Grid item xs={6}>
+  <Grid item xs={12} md={6}>
     <Item>xs=6</Item>
   </Grid>
 
@@ -191,11 +191,11 @@ function Home() {
     <Item>xs=6</Item>
   </Grid>
 
-  <Grid item xs={2}>
+  <Grid item xs={12} md={4}>
     <Item>xs=6</Item>
   </Grid>
 
-  <Grid item xs={10}>
+  <Grid item xs={12} md ={8}>
     <Item>xs=6</Item>
   </Grid>
 
