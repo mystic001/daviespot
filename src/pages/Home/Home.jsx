@@ -15,8 +15,10 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import TemporaryDrawer from "../../components/TemporaryDrawer";
 import SimpleBackdrop from "../../components/SimpleBackdrop";
 import TextField from "@mui/material/TextField";
-import "./home.css"
+import "./home.css";
 import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Copyright(props) {
   return (
     <Typography
@@ -41,7 +43,6 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
-
 
 // const tiers = [
 //   {
@@ -118,24 +119,34 @@ function Home() {
   const matches = useMediaQuery(theme.breakpoints.up("sm"));
   const [open, setOpen] = React.useState(false);
   const [emailContent, setEmailContent] = React.useState({
-    name:"",
-    email:"",
-    message:""
-  })
-const validateEmail = (emailAdress) =>{
-  let regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
-  if (emailAdress.match(regexEmail)) {
-    return true; 
-  } else {
-    return false; 
-  }
-}
+    name: "",
+    email: "",
+    message: "",
+  });
 
-const [error, setError] = React.useState({
-  emailError: false,
-  nameError:false,
-  messageError:false
-})
+  const notify = (feedback) => toast(feedback, {
+    position: "top-right",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined}
+    );
+  const validateEmail = (emailAdress) => {
+    let regexEmail = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
+    if (emailAdress.match(regexEmail)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const [error, setError] = React.useState({
+    emailError: false,
+    nameError: false,
+    messageError: false,
+  });
   const handleClose = () => {
     setOpen(false);
   };
@@ -143,36 +154,34 @@ const [error, setError] = React.useState({
   //   setOpen(!open);
   // };
 
-  const detailValidationFailed = ()=>{
-    if(emailContent.name === ""){
-      setError({...error,nameError:true})
-      return true
-    }else if(!validateEmail(emailContent.email)){
-      setError({...error,emailError:true})
-      return true
-    }
-    else if(emailContent.message === ""){
-      setError({...error,messageError:true})
-      return true
-    }else {
-      console.log("In d else ran")
+  const detailValidationFailed = () => {
+    if (emailContent.name === "") {
+      setError({ ...error, nameError: true });
+      return true;
+    } else if (!validateEmail(emailContent.email)) {
+      setError({ ...error, emailError: true });
+      return true;
+    } else if (emailContent.message === "") {
+      setError({ ...error, messageError: true });
+      return true;
+    } else {
+      console.log("In d else ran");
       setError({
-        nameError:false,
-        messageError:false,
-        emailError:false
-      })
+        nameError: false,
+        messageError: false,
+        emailError: false,
+      });
 
-      return false
+      return false;
     }
-    
-  }
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    console.log(emailContent)
-console.log(error)
-    if(!detailValidationFailed()){
+    console.log(emailContent);
+    console.log(error);
+    if (!detailValidationFailed()) {
       setOpen(true);
       emailjs
         .sendForm(
@@ -182,16 +191,23 @@ console.log(error)
           "iMeGneUxWK9PjbNw9"
         )
         .then((res) => {
-          console.log(res);
-          setOpen(false);
+          if (res.status === 200) {
+            console.log(res);
+            notify("Your mail was succefully sent");
+            setEmailContent({
+              name: "",
+              email: "",
+              message: "",
+            })
+            setOpen(false);
+          }
         })
         .catch((err) => {
           setOpen(false);
-          err.message()
+          notify("Message was not sent");
+          err.message();
         });
     }
-    
-
   };
   return (
     <React.Fragment>
@@ -282,91 +298,90 @@ console.log(error)
       </Container>
       {/* End hero unit */}
       <Container maxWidth="lg" component="main" sx={{ px: 6 }}>
-        <form
-        onSubmit={sendEmail}>
-        <Grid
-          container
-          spacing={2}
-          sx={{
-            border: `1px solid ${theme.palette.divider}`,
-            borderRadius: "12px",
-            paddingRight: "12px",
-          }}
-        >
-          <Grid item xs={12}>
-            <Typography
-              variant="h4"
-              align="center"
-              color="text.primary"
-              component="p"
-            >
-              Want to get in touch?
-            </Typography>
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <TextField
-              error = {error.nameError}
-              helperText = "Name is required"
-              id="outlined-basic"
-              fullWidth
-              label="Name"
-              onChange = {(e)=>{
-                setEmailContent({...emailContent,name:e.target.value})
-              }}
-              placeholder="Enter name"
-              name="name"
-              variant="outlined"
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <TextField
-            error = {error.emailError}
-              id="outlined-basic"
-              fullWidth
-              onChange = {(e)=>{
-                setEmailContent({...emailContent,email:e.target.value})
-              }}
-              label="Email Address"
-              name="email"
-              helperText="Email is required"
-              placeholder="Enter Email Address"
-              variant="outlined"
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <TextField
-            error = {error.messageError}
-              id="outlined-multiline-static"
-              label="Message"
-              name="message"
-              onChange = {(e)=>{
-                setEmailContent({...emailContent,message:e.target.value})
-              }}
-              helperText = "Message cannot be empty"
-              fullWidth
-              multiline
-              rows={4}
-              placeholder="Enter your message"
-            />
-          </Grid>
-
+        <form onSubmit={sendEmail}>
           <Grid
-            item
-            xs={12}
+            container
+            spacing={2}
             sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              border: `1px solid ${theme.palette.divider}`,
+              borderRadius: "12px",
+              paddingRight: "12px",
             }}
           >
-            <input
-            className = "btn"
-            type = "submit">
-            </input>
-            {/* <Button
+            <Grid item xs={12}>
+              <Typography
+                variant="h4"
+                align="center"
+                color="text.primary"
+                component="p"
+              >
+                Want to get in touch?
+              </Typography>
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <TextField
+                error={error.nameError}
+                helperText="Name is required"
+                id="outlined-basic"
+                fullWidth
+                label="Name"
+                value = {emailContent.name}
+                onChange={(e) => {
+                  setEmailContent({ ...emailContent, name: e.target.value });
+                }}
+                placeholder="Enter name"
+                name="name"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <TextField
+                error={error.emailError}
+                id="outlined-basic"
+                fullWidth
+                value = {emailContent.email}
+                onChange={(e) => {
+                  setEmailContent({ ...emailContent, email: e.target.value });
+                }}
+                label="Email Address"
+                name="email"
+                helperText="Email is required"
+                placeholder="Enter Email Address"
+                variant="outlined"
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <TextField
+                error={error.messageError}
+                id="outlined-multiline-static"
+                label="Message"
+                value={emailContent.message}
+                name="message"
+                onChange={(e) => {
+                  setEmailContent({ ...emailContent, message: e.target.value });
+                }}
+                helperText="Message cannot be empty"
+                fullWidth
+                multiline
+                rows={4}
+                placeholder="Enter your message"
+              />
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <input className="btn" type="submit"></input>
+              {/* <Button
               href="#"
               type = "submit"
               size="large"
@@ -379,13 +394,11 @@ console.log(error)
             >
               SUBMIT
             </Button> */}
-
-            <SimpleBackdrop open ={open} handleClose={handleClose}/>
+              <ToastContainer />
+              <SimpleBackdrop open={open} handleClose={handleClose} />
+            </Grid>
           </Grid>
-        </Grid>
-
         </form>
-       
       </Container>
       {/* Footer */}
       <Container
